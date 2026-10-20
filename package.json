@@ -1,0 +1,18 @@
+{
+  "name": "lab3-ket-noi-service",
+  "version": "1.0.0",
+  "description": "PTIT Lab 3 - Ket noi va duy tri ket noi giua cac service (Fee Service and Mock Bank Gateway)",
+  "main": "fee-service/server.js",
+  "scripts": {
+    "start:bank": "node bank-service/server.js",
+    "start:fee": "node fee-service/server.js",
+    "test:all": "node test-scripts/run-all-tests.js",
+    "test:scenario-1": "node test-scripts/test-scenario-1.js",
+    "test:scenario-2": "node test-scripts/test-scenario-2.js",
+    "test:scenario-3": "node test-scripts/test-scenario-3.js",
+    "test:scenario-4": "node test-scripts/test-scenario-4.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

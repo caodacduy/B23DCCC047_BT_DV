@@ -1,0 +1,79 @@
+{
+  "info": {
+    "name": "PTIT Lab 3 - Fee and Bank Services",
+    "description": "Bộ sưu tập Postman kiểm thử đầy đủ API Fee Service và Ngân hàng",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Fee Service",
+      "item": [
+        {
+          "name": "1. Tra cứu công nợ Sinh viên 1",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:4001/students/1/fees"
+          }
+        },
+        {
+          "name": "2. Tra cứu công nợ Sinh viên 2 (Nợ 0)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:4001/students/2/fees"
+          }
+        },
+        {
+          "name": "3. Thanh toán học phí hợp lệ (100.000đ)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"amount\": 100000\n}" },
+            "url": "http://localhost:4001/students/1/payments"
+          }
+        },
+        {
+          "name": "4. Thanh toán vượt hạn mức ngân hàng (25.000.000đ -> 402)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"amount\": 25000000\n}" },
+            "url": "http://localhost:4001/students/1/payments"
+          }
+        },
+        {
+          "name": "5. Thanh toán vượt công nợ sinh viên (60.000.000đ -> 400)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"amount\": 60000000\n}" },
+            "url": "http://localhost:4001/students/1/payments"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bank Gateway",
+      "item": [
+        {
+          "name": "1. Lấy thống kê Bank /stats",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:4002/stats"
+          }
+        },
+        {
+          "name": "2. Cấu hình hành vi lỗi /config",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"DELAY_MS\": 0,\n  \"FAIL_RATE\": 0,\n  \"DROP_RATE\": 0\n}"
+            },
+            "url": "http://localhost:4002/config"
+          }
+        }
+      ]
+    }
+  ]
+}
